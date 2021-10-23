@@ -30,9 +30,11 @@ window.onload =  function () {
     
     //On gènere une grille 2d (une matrice, c'est expliqué dans le code de la fonction) 
     var grille = generateGrid(gridWidth, gridHeight);
+        
+    //ATTENTION, la grille n'est pas la même chose que le screen 
 
 
-
+    //Pour chaque point de notre écran(screen)
     for (let i = 0; i < screen.length; i++) 
 
         for (let j = 0; j < screen[i].length; j++) 
@@ -62,12 +64,10 @@ window.onload =  function () {
             }
 
             //===================================
-            let gridPos = {
+            let gridPos = {//La position de la cellule
                 x: Math.floor( j / cellWidth ),
                 y: Math.floor( i /  cellHeight )
             }
-
-            //console.log(gridPos);
 
             produitsArray[0] = produitScalaire(
                 distanceVectors[0],
@@ -119,6 +119,7 @@ window.onload =  function () {
 }
 
 function newMatrice_2d(w, h) {
+        //c'est une fonction qui crée une matrice 2d, le javascript ne peut pas crée de matrice automatiquement
     var matrice = new Array(w);
 
     for (let i = 0; i < matrice.length; i++)
