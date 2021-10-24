@@ -31,19 +31,19 @@ int main(int argc, char const *argv[])
     int affichageMode = 0;
     if (argc > 1)
     {
-        if (argv[1][0] == 'n')
+        if (argv[1][0] == 'f')
         {
-            printf("Affichage mode Normale");
+            printf("Affichage mode Flou\n");
             affichageMode = 0;
         }
         else if (argv[1][0] == 'c')
         {
-            printf("Affichage mode Courbure");
+            printf("Affichage mode Courbure\n");
             affichageMode = 1;
         }
         else if (argv[1][0] == 'g')
         {
-            printf("Affichage mode glow");
+            printf("Affichage mode glow\n");
             affichageMode = 2;
         }
         
