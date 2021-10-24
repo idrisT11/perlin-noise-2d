@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
+//mcs /reference:System.Drawing.dll main.cs
+
 namespace perlin
 {
     class Program
