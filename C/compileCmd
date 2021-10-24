@@ -1,2 +1,2 @@
 compile : gcc main.c -o execName -lgd -lpng -lz -ljpeg -lfreetype -lm
-execution: ./execName {n|c|g}
+execution: ./execName {f|c|g}
