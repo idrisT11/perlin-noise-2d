@@ -30,11 +30,9 @@ window.onload =  function () {
     
     //On gènere une grille 2d (une matrice, c'est expliqué dans le code de la fonction) 
     var grille = generateGrid(gridWidth, gridHeight);
-        
-    //ATTENTION, la grille n'est pas la même chose que le screen 
 
 
-    //Pour chaque point de notre écran(screen)
+
     for (let i = 0; i < screen.length; i++) 
 
         for (let j = 0; j < screen[i].length; j++) 
@@ -64,10 +62,12 @@ window.onload =  function () {
             }
 
             //===================================
-            let gridPos = {//La position de la cellule
+            let gridPos = {
                 x: Math.floor( j / cellWidth ),
                 y: Math.floor( i /  cellHeight )
             }
+
+
 
             produitsArray[0] = produitScalaire(
                 distanceVectors[0],
@@ -108,8 +108,11 @@ window.onload =  function () {
             )
             
             //on dessine
-            let rouge = Math.atan(zebi_total) * 80 + 125;
-            context.fillStyle = "rgb(" + rouge + ',0, 0)';
+            let val1 = zebi_total * 30 + 120;
+            let val2 = zebi_total * 10 + 120;
+            let val3 = Math.atan(zebi_total) * 80 + 125;
+
+            context.fillStyle = "rgb(" + val2 + ',0, 0)';
             context.fillRect(j*facteur, i*facteur, facteur, facteur);
      
         }
@@ -119,7 +122,6 @@ window.onload =  function () {
 }
 
 function newMatrice_2d(w, h) {
-        //c'est une fonction qui crée une matrice 2d, le javascript ne peut pas crée de matrice automatiquement
     var matrice = new Array(w);
 
     for (let i = 0; i < matrice.length; i++)
@@ -162,9 +164,18 @@ function generateGrid(gridWidth, gridHeight){
 }
 
 function produitScalaire(vectA, vectB){
-    //console.log(vectA, vectB);
+
     return vectA.x * vectB.y + vectA.y * vectB.x;
 
+}
+
+function normalizeVector(vect) {
+    let angle = Math.atan(vect.y/vect.x);
+
+    return {
+        x: Math.cos(angle),
+        y: Math.sin(angle),
+    }
 }
 
 //===================================================
@@ -173,5 +184,13 @@ function produitScalaire(vectA, vectB){
 //Genre prédéfinie, https://en.wikipedia.org/wiki/Perlin_noise
 
 function interpolate( a0,  a1,  w) {
-    return (1.0 - w)*a0 + w*a1;
+    //default
+    //return (1.0 - w)*a0 + w*a1;
+
+    // Use this cubic interpolation [[Smoothstep]] instead, for a smooth appearance:
+    return (a1 - a0) * (3.0 - w * 2.0) * w * w + a0;
+    
+    // Use [[Smootherstep]] for an even smoother result with a second derivative equal to zero on boundaries:
+    //return (a1 - a0) * ((w * (w * 6.0 - 15.0) + 10.0) * w * w * w) + a0;
+    
 }
